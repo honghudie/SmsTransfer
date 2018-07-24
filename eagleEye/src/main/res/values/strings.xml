@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <string name="app_name">DeviceManager</string>
-    <string name="title_activity_main">DeviceCheck</string>
-    <string name="hello_world">点击按钮检查您的手机状态：</string>
-    <string name="action_settings">Settings</string>
-
-</resources>
