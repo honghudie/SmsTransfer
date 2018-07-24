@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">短信转发器（陕西）</string>
+    <string name="app_info">1、请确保授于应用读短信权限。 &#x000A;2、请确保应用在后台运行。  &#x000A;3、请确保应用不被内存清理软件清除。</string>
+</resources>
