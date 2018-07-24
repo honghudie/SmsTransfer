@@ -52,22 +52,6 @@ public class SmsReceiver extends BroadcastReceiver {
                 myAsync = new MyAsyncTask();
                 MyAsyncTask.execute(test);
 
-//                if (content.contains("告警") && (
-//                    content.contains("数据库") || content.contains("Oracle") ||
-//                    content.contains("Sybase") || content.contains("Mysql") ||
-//                    content.contains("Postgresql")|| content.contains("Hbase")||
-//                    content.contains("达梦")|| content.contains("Sqlserver")
-//                            )
-//                ){
-//                    myAsync = new MyAsyncTask();
-//                    MyAsyncTask.execute(test);
-//                }
-//                else if(content.contains("预警")||content.contains("恢复")||content.contains("SQL审计连续运行")||content.contains("短报")){
-//                    myAsync = new MyAsyncTask();
-//                    MyAsyncTask.execute(test);
-//                }
-
-
             }
         }
     }
