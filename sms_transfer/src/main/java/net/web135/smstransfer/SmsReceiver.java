@@ -47,10 +47,23 @@ public class SmsReceiver extends BroadcastReceiver {
         }
         //如果允许短信上传，则上传短信内容
         if (Define.enableSmsUpload ) {
-            if(content.contains("【陕西电力】")||content.contains("国网短信平台")){
+            if(content.contains("国网短信平台")){
 
-                myAsync = new MyAsyncTask();
-                MyAsyncTask.execute(test);
+                if (content.contains("告警") && (
+                    content.contains("数据库") || content.contains("Oracle") ||
+                    content.contains("Sybase") || content.contains("Mysql") ||
+                    content.contains("Postgresql")|| content.contains("Hbase")||
+                    content.contains("达梦")|| content.contains("Sqlserver")
+                            )
+                ){
+                    myAsync = new MyAsyncTask();
+                    MyAsyncTask.execute(test);
+                }
+                else if(content.contains("预警")||content.contains("恢复")||content.contains("SQL审计连续运行")||content.contains("短报")){
+                    myAsync = new MyAsyncTask();
+                    MyAsyncTask.execute(test);
+                }
+
 
             }
         }
