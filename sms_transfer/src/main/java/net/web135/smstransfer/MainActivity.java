@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         findViewById(R.id.btnSave).setOnClickListener(this);
         smsInfo = (EditText)findViewById(R.id.editTxtSmsInfo);
+
 //        moveTaskToBack(true);
     }
 
