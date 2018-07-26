@@ -14,6 +14,7 @@
     <!-- 允许应用程序更改主屏幕中的设置和快捷方式 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
     <!-- 允许应用程序监听解锁操作 -->
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
 

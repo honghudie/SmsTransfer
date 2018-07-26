@@ -29,6 +29,7 @@
             android:ems="10"
             android:hint="@string/app_info"
             android:inputType="textMultiLine"
+            android:text="@string/app_info"
             android:visibility="visible" />
 
         <Button
