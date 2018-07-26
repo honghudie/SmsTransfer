@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
     <!-- 访问网络，网络定位需要上网 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 屏幕保持唤醒 不锁屏 -->
@@ -14,6 +14,8 @@
     <!-- 允许应用程序更改主屏幕中的设置和快捷方式 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
     <!-- 允许应用程序监听解锁操作 -->
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
 
@@ -38,6 +40,19 @@
             android:exported="true">
             <intent-filter android:priority="999" >
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <!--<action android:name="android.intent.action.BOOT_COMPLETED" />-->
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".ActiveReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="999" >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <!--<action android:name="android.intent.action.USER_PRESENT" />-->
+                <!--<action android:name="android.intent.action.PHONE_STATE"/>-->
             </intent-filter>
         </receiver>
     </application>

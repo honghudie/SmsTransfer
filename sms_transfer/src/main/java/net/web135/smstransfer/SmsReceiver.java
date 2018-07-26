@@ -1,6 +1,7 @@
 package net.web135.smstransfer;
 
 import android.annotation.SuppressLint;
+import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -33,33 +34,36 @@ public class SmsReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.i("testReceiver", "=========================>On_SMS_RECEIVED");
         content = "";
-        Object[] pdus = (Object[]) intent.getExtras().get("pdus");
-        for (Object p : pdus) {
-            byte[] pdu = (byte[]) p;
-            SmsMessage message = SmsMessage.createFromPdu(pdu);
-            content += message.getMessageBody();
-            Log.i("content+= : ==>>   ", content.toString());
-            Date date = new Date(message.getTimestampMillis());
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            receivetime = format.format(date);
+        try {
+            Object[] pdus = (Object[]) intent.getExtras().get("pdus");
+            for (Object p : pdus) {
+                byte[] pdu = (byte[]) p;
+                SmsMessage message = SmsMessage.createFromPdu(pdu);
+                content += message.getMessageBody();
+                Log.i("content+= : ==>>   ", content.toString());
+                Date date = new Date(message.getTimestampMillis());
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                receivetime = format.format(date);
 //            sendernumber = message.getOriginatingAddress();
 //            reciverNumber = getLocalNumber(context);
+            }
+        } catch (Exception ex) {
+            Log.i("testReceiver", "=========================>Not Messages");
         }
         //如果允许短信上传，则上传短信内容
-        if (Define.enableSmsUpload ) {
-            if(content.contains("国网短信平台")){
+        if (Define.enableSmsUpload) {
+            if (content.contains("国网短信平台")) {
 
                 if (content.contains("告警") && (
-                    content.contains("数据库") || content.contains("Oracle") ||
-                    content.contains("Sybase") || content.contains("Mysql") ||
-                    content.contains("Postgresql")|| content.contains("Hbase")||
-                    content.contains("达梦")|| content.contains("Sqlserver")
-                            )
-                ){
+                        content.contains("数据库") || content.contains("Oracle") ||
+                                content.contains("Sybase") || content.contains("Mysql") ||
+                                content.contains("Postgresql") || content.contains("Hbase") ||
+                                content.contains("达梦") || content.contains("Sqlserver")
+                )
+                        ) {
                     myAsync = new MyAsyncTask();
                     MyAsyncTask.execute(test);
-                }
-                else if(content.contains("预警")||content.contains("恢复")||content.contains("SQL审计连续运行")||content.contains("短报")){
+                } else if (content.contains("预警") || content.contains("恢复") || content.contains("SQL审计连续运行") || content.contains("短报")) {
                     myAsync = new MyAsyncTask();
                     MyAsyncTask.execute(test);
                 }
